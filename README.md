@@ -25,6 +25,9 @@ npm i
 
 ## Technical Overview and Usage
 
+https://user-images.githubusercontent.com/121476474/221421349-c3d4a5c8-01c6-4581-9846-637f6d9f24f6.mp4
+
+
 Following installation, launch using npm start. The application will present a number of prompts and generate a basic README structure on the basis of the information provided.
 
 ## Contributions
