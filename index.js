@@ -1,30 +1,30 @@
 const inq=require('inquirer');
 const fs=require('fs');
 const md=require('./utils/generateMarkdown.js');
+const generateMarkdown = require('./utils/generateMarkdown.js');
 
 
 const questions = [
     {type:'input', message: 'What is the name of the project?', name:'sProjTitle'},
     {type:'input', message: `Please enter a description of the project:`, name:'sProjDesc'},
     {type:'input', message: 'Please enter installation instructions:', name:'sProjInstall'},
-    {type:'input', message: 'Please provide instructions on how to use this code:', name:'sProjUsage'},
-    {type:'input', message: 'Please describe contributions to this project', name:'sProjContribs'},
-    {type:'input', message: 'Please provide testing information:', name:'sProjTests'}
-
-
+    {type:'input', message: 'Please provide a technical overview and instructions on how to use this code:', name:'sProjUsage'},
+    {type:'input', message: 'Please describe contributions to this project (optional):', name:'sProjContribs'},
+    {type:'input', message: 'Please provide testing and dependency information:', name:'sProjTests'},
+    {type:'list', message: 'Please select a license:',choices:['MIT License', 'Apache 2.0 License', 'GNU GPL', 'Mozilla Public License 2.0', 'ISC License', 'Microsoft Public License', 'None'], name:'sProjLicense'}
 ];
 
-// TODO: Create a function to write README file
+
 function writeToFile(fileName, data) {
-    console.log(data);
-
+    fs.writeFile(fileName, data , (error) => {(error) ? console.error(error):console.log('File written.')});
 }
 
-// TODO: Create a function to initialize app
-function init() {
-    inq.prompt(questions).then((response) => writeToFile('README.md',response));
 
+async function init() {
+
+    response = await inq.prompt(questions);
+    generateMarkdown(response);
+    writeToFile('README3.md',generateMarkdown(response));
 }
 
-// Function call to initialize app
 init();
