@@ -37,10 +37,10 @@ function renderLicenseBadge(license) {
 
 function renderLicenseLink(license) {
     switch (license) {
-      case 'MIT':
+      case 'MIT License':
         return 'https://opensource.org/licenses/MIT'
       break;
-      case 'Apache 2.0':
+      case 'Apache 2.0 License':
         return 'https://opensource.org/licenses/Apache-2.0'
       break;
       case 'GNU GPL':
@@ -72,7 +72,7 @@ function renderLicenseSection(license) {
   if (!license || (license==='None')) {
     return '';
   } else {
-    return `## License\n\n### Licensed under the [${license}](${renderLicenseLink(license)})`
+    return `## License\n\n### Licensed under the [${license}](${renderLicenseLink(license)}).`
   }
     
 }
@@ -82,6 +82,17 @@ function generateMarkdown({sProjTitle,sProjDesc,sProjInstall,sProjUsage,sProjCon
   return `
 # ${sProjTitle}
 ${renderLicenseBadge(sProjLicense)}
+
+## Table of Contents
+[Introduction and Purpose](#introduction-and-purpose)
+
+[Installation](#installation)
+
+[Technical Overview and Usage](#technical-overview-and-usage)${(sProjContribs.length) ? '\n\n[Contributions](#contributions)':''}
+
+[Tests and Dependencies](#tests-and-dependencies)
+
+${(renderLicenseSection(sProjLicense)) ? '[License](#license)':''}
 
 ## Introduction and Purpose
   

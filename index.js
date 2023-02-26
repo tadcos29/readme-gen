@@ -24,7 +24,7 @@ async function init() {
 
     response = await inq.prompt(questions);
     generateMarkdown(response);
-    writeToFile('README3.md',generateMarkdown(response));
+    writeToFile('README.md',generateMarkdown(response));
 }
 
 init();
